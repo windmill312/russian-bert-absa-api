@@ -1,0 +1,4 @@
+venv
+.idea
+/notebooks/pytorch_model.bin
+lib/models/pre-final.sav
