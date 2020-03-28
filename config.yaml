@@ -21,3 +21,5 @@ data:
     - conflict
     - negative
     - positive
+  tune-file: lib/data/sentence_level/tune.json
+

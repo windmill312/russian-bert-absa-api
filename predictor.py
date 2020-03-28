@@ -16,6 +16,8 @@ class Predictor:
         self.aspects = aspects
         self.sentiments = sentiments
 
+        # torch.hub.load_state_dict_from_url('https://drive.google.com/open?id=1VgkYMKE64UeCkLURafae4Z0UaYtWBIZq')
+        # weights = torch.hub.load_state_dict_from_url('https://drive.google.com/uc?export=download&confirm=qTcY&id=1SeeRVlb_uMcZYKD4r8X_dqKDBTyDastF')
         weights = torch.load('notebooks/final_weights.pth', map_location='cpu')
         new_weights = {name[7:]: weights[name] for name in weights}
 
