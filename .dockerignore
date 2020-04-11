@@ -1,0 +1,7 @@
+/venv
+/lib/models
+*.sh
+Dockerfile
+/lib/data/review_level
+/lib/data/not_classified
+/lib/data/sentence_level/*

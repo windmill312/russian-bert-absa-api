@@ -1,4 +1,8 @@
 venv
 .idea
-/notebooks/pytorch_model.bin
+
+notebooks/final_weights.pth
+notebooks/.ipynb_checkpoints
+
 lib/models/pre-final.sav
+lib/data/sentence_level/tune.json

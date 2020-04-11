@@ -1,4 +1,4 @@
 Flask
 flask-cors
-yaml
-torch
+PyYAML
+Flask-RESTful
