@@ -1,10 +1,10 @@
 import json
 import os
+from json import loads
 
 import yaml
 from flask import request
 from flask_restful import Resource
-from json import loads
 
 
 def prepare_marked_data(marked_data):
@@ -20,8 +20,8 @@ def prepare_marked_data(marked_data):
 
     return {
         "text": marked_data['sentence'],
-        "category": [categories],
-        "polarity": [polarities]
+        "category": categories,
+        "polarity": polarities
     }
 
 
@@ -37,10 +37,10 @@ class Tune(Resource):
         if os.path.exists(self.filename):
             if os.path.getsize(self.filename) == 0:
                 with open(self.filename, 'w') as outfile:
-                    json.dump(annotation, outfile)
+                    json.dump(annotation, outfile, ensure_ascii=False)
         else:
             with open(self.filename, 'w+') as outfile:
-                json.dump(annotation, outfile)
+                json.dump(annotation, outfile, ensure_ascii=False)
 
     def post(self):
         data = loads(request.data)
@@ -51,7 +51,7 @@ class Tune(Resource):
                 file_data = json.load(file)
                 file_data['annotation'].append(marked_data)
                 file.seek(0)
-                json.dump(file_data, file)
+                json.dump(file_data, file, ensure_ascii=False)
 
             return '', 204
         else:

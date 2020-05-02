@@ -86,7 +86,7 @@ class BertConfig(object):
     @classmethod
     def from_json_file(cls, json_file):
         """Constructs a `BertConfig` from a json file of parameters."""
-        with open(json_file, "r") as reader:
+        with open(json_file, "r", encoding="utf-8") as reader:
             text = reader.read()
         return cls.from_dict(json.loads(text))
 
@@ -491,14 +491,11 @@ class BertForSequenceMultiClassification(nn.Module):
         polarities = []
         self.num_classes = num_classes
         for i in range(num_classes):
-            polarities.append(nn.Linear(config.hidden_size, 5))
+            polarities.append(nn.Linear(config.hidden_size, 4))
         self.polarity = nn.ModuleList(polarities)
-
 
         def init_weights(module):
             if isinstance(module, (nn.Linear, nn.Embedding)):
-                # Slightly different from the TF version which uses truncated_normal for initialization
-                # cf https://github.com/pytorch/pytorch/pull/5617
                 module.weight.data.normal_(mean=0.0, std=config.initializer_range)
             elif isinstance(module, BERTLayerNorm):
                 module.beta.data.normal_(mean=0.0, std=config.initializer_range)

@@ -3,6 +3,7 @@ venv
 
 notebooks/final_weights.pth
 notebooks/.ipynb_checkpoints
+notebooks/pytorch_model.bin
 
 lib/models/pre-final.sav
 lib/data/sentence_level/tune.json

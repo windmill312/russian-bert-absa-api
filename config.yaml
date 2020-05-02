@@ -4,21 +4,14 @@ app:
   debug: True
 data:
   aspects:
-    - RESTAURANT#MISCELLANEOUS
     - FOOD#QUALITY
-    - RESTAURANT#GENERAL
-    - DRINKS#QUALITY
-    - AMBIENCE#GENERAL
     - SERVICE#GENERAL
-    - FOOD#PRICES
     - RESTAURANT#PRICES
+    - AMBIENCE#GENERAL
+    - RESTAURANT#GENERAL
     - FOOD#STYLE_OPTIONS
-    - DRINKS#PRICES
-    - DRINKS#STYLE_OPTIONS
-    - LOCATION#GENERAL
   sentiments:
     - neutral
-    - conflict
     - negative
     - positive
   tune-file: lib/data/sentence_level/tune.json

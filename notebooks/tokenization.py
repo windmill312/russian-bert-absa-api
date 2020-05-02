@@ -263,7 +263,6 @@ def _is_control(char):
         return True
     return False
 
-
 def _is_punctuation(char):
     """Checks whether `chars` is a punctuation character."""
     cp = ord(char)

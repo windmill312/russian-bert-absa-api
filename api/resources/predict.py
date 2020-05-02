@@ -1,7 +1,7 @@
-import yaml
-from flask_restful import Resource, reqparse
 import torch
 import torch.nn.functional as F
+import yaml
+from flask_restful import Resource, reqparse
 
 from notebooks import tokenization
 from notebooks.modeling import BertConfig, BertForSequenceMultiClassification
@@ -39,11 +39,12 @@ class Predict(Resource):
     tokenizer = None
 
     sentence_level_model = None
-    vocab_file = '/app/notebooks/vocab.txt'
-    weights_file = '/app/notebooks/final_weights.pth'
+    vocab_file = 'notebooks/vocab.txt'
+    weights_file = 'notebooks/final_weights.pth'
+    bert_config_file = 'notebooks/bert_config.json'
 
     def __init__(self):
-        with open("/app/config.yaml", 'r') as conf_file:
+        with open("config.yaml", 'r') as conf_file:
             cfg = yaml.load(conf_file, Loader=yaml.BaseLoader)
 
         self.aspects = cfg['data']['aspects']
@@ -58,7 +59,7 @@ class Predict(Resource):
         weights = torch.load(self.weights_file, map_location='cpu')
         new_weights = {name[7:]: weights[name] for name in weights}
 
-        bert_config = BertConfig.from_json_file('notebooks/bert_config.json')
+        bert_config = BertConfig.from_json_file(self.bert_config_file)
         self.sentence_level_model = BertForSequenceMultiClassification(bert_config, len(self.aspects))
         self.sentence_level_model.load_state_dict(new_weights)
         self.tokenizer = tokenization.FullTokenizer(vocab_file=self.vocab_file, do_lower_case=False)
