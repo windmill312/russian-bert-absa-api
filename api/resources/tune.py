@@ -36,10 +36,10 @@ class Tune(Resource):
         annotation = {"annotation": []}
         if os.path.exists(self.filename):
             if os.path.getsize(self.filename) == 0:
-                with open(self.filename, 'w') as outfile:
+                with open(self.filename, 'w', encoding='utf-8') as outfile:
                     json.dump(annotation, outfile, ensure_ascii=False)
         else:
-            with open(self.filename, 'w+') as outfile:
+            with open(self.filename, 'w+', encoding='utf-8') as outfile:
                 json.dump(annotation, outfile, ensure_ascii=False)
 
     def post(self):
@@ -47,7 +47,7 @@ class Tune(Resource):
         if (data is not None) and (data != ''):
             marked_data = prepare_marked_data(data)
 
-            with open(self.filename, "r+") as file:
+            with open(self.filename, "r+", encoding='utf-8') as file:
                 file_data = json.load(file)
                 file_data['annotation'].append(marked_data)
                 file.seek(0)

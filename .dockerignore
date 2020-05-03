@@ -1,7 +1,9 @@
 /venv
 /lib/models
 *.sh
+*.ipynb
 Dockerfile
 /lib/data/review_level
 /lib/data/not_classified
 /lib/data/sentence_level/*
+/notebooks/pytorch_model.bin
